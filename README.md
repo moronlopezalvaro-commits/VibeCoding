@@ -16,3 +16,14 @@ Está muy bien, ahora quiero añadirle un botón (respetando la estética) en la
 También quiero añadir un contador gráfico al lado de cada fila que muestre el porcentaje de juegos que hay en esa fila respecto al total. Por ejemplo, si pongo muchos juegos en la fila "S", que aparezca una barra de progreso o un número grande indicando que el 50% de los juegos son "Divinos". Que se actualice en tiempo real al soltar una carta.
 
 Por último quiero añadir estas nuevas imágenes a las pasadas anteriormente.
+
+# Prompt 3
+Quiero añadir al fondo detalles como rayos cayendo de fondo, pero que estén difuminados.
+También quiero que cambies el nombre de "BANQUILLO DE TÉCNICAS" a "BANQUILLO⚽⚡"
+Además, no has añadido las imágenes nuevas que te he dado, estos son sus nombres:
+Inazuma Eleven Go Strikers 2013.jpg
+Inazuma Eleven Go Supernova.jpg
+Inazuma Eleven Strikers Xtreme 2013.jpg
+Inazuma Eleven Strikers.jpg
+Inazuma Eleven Victory Road.jpg
+Inazuma Eleven.jpg
