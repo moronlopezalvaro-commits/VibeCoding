@@ -279,4 +279,285 @@ header h1 {
     .tier-content { padding: 10px; gap: 8px; }
     .game-cover { width: 70px; height: 70px; gap: 5px;} /* Ajuste responsive móvil */
     .bench { gap: 10px; padding: 10px;}
+}:root {
+    --bg-dark: #0b0d17;
+    --electric-blue: #00e5ff;
+    --electric-blue-dark: #0099aa;
+    --lightning-yellow: #ffcc00;
+    --text-white: #ffffff;
+    --stat-bar-bg: #1a2535;
+    
+    --rank-s: #27ae60;
+    --rank-a: #2ecc71;
+    --rank-b: #f1c40f;
+    --rank-c: #e67e22;
+    --rank-d: #c0392b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Fondo Estático */
+.background-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, #1a2542 0%, #0b0d17 100%);
+    z-index: -2;
+    opacity: 0.8;
+}
+
+/* Efecto Rayos */
+.lightning-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.lightning {
+    position: absolute;
+    top: -50%;
+    width: 5px;
+    height: 200%;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(209, 243, 255, 0) 100%);
+    transform: skewX(-20deg);
+    filter: blur(8px); 
+    opacity: 0;
+    animation: lightning-strike 5s infinite linear;
+}
+
+@keyframes lightning-strike {
+    0% { opacity: 0; transform: translateY(0) skewX(-20deg); }
+    5% { opacity: 0.6; }
+    10% { opacity: 0.1; }
+    15% { opacity: 0.8; }
+    30% { opacity: 0; transform: translateY(100vh) skewX(-20deg); }
+    100% { opacity: 0; }
+}
+
+.lightning:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 7s; }
+.lightning:nth-child(2) { left: 30%; animation-delay: 2.5s; animation-duration: 6s; width: 3px; }
+.lightning:nth-child(3) { left: 55%; animation-delay: 1s; animation-duration: 8s; filter: blur(12px); }
+.lightning:nth-child(4) { left: 75%; animation-delay: 4s; animation-duration: 5.5s; width: 7px; }
+.lightning:nth-child(5) { left: 90%; animation-delay: 3s; animation-duration: 9s; }
+
+
+/* Header y Botón */
+header {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 3px solid var(--electric-blue);
+    margin-bottom: 25px;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+    position: relative;
+    z-index: 10;
+}
+
+header h1 {
+    font-family: 'Russo One', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px var(--electric-blue);
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.highlight { color: var(--lightning-yellow); text-shadow: 0 0 15px var(--lightning-yellow); }
+
+.inazuma-btn {
+    background: linear-gradient(45deg, var(--electric-blue-dark), var(--electric-blue));
+    border: none;
+    padding: 12px 30px;
+    color: var(--bg-dark);
+    font-family: 'Russo One', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--electric-blue);
+}
+
+.inazuma-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px var(--electric-blue);
+    color: white;
+}
+
+/* Estructura Tier List */
+.tier-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    z-index: 10;
+}
+
+.tier-row {
+    display: flex;
+    min-height: 140px; /* Aumentado ligeramente */
+    border: 2px solid #333;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+}
+
+.tier-label {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Russo One', sans-serif;
+    font-size: 2.2rem;
+    color: rgba(0,0,0,0.8);
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
+    flex-shrink: 0;
+}
+.tier-label span { font-size: 0.9rem; font-family: 'Roboto', sans-serif; font-weight: bold; opacity: 0.9; }
+.rank-s { background-color: var(--rank-s); }
+.rank-a { background-color: var(--rank-a); }
+.rank-b { background-color: var(--rank-b); }
+.rank-c { background-color: var(--rank-c); }
+.rank-d { background-color: var(--rank-d); }
+
+.tier-content {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 15px;
+    gap: 12px;
+    background-color: rgba(255, 255, 255, 0.02);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    min-width: 200px;
+}
+
+/* Estadísticas */
+.tier-stats {
+    width: 110px;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-left: 2px solid #333;
+    flex-shrink: 0;
+}
+
+.stat-percent {
+    font-family: 'Russo One', sans-serif;
+    font-size: 1.5rem;
+    color: var(--lightning-yellow);
+    text-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+    margin-bottom: 8px;
+}
+
+.progress-bar-container {
+    width: 80%; height: 10px;
+    background-color: var(--stat-bar-bg);
+    border-radius: 5px; overflow: hidden;
+    border: 1px solid #444;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--lightning-yellow), #ff9900);
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+    box-shadow: 0 0 10px var(--lightning-yellow);
+}
+
+.tier-content.drag-over, .bench.drag-over {
+    background-color: rgba(0, 229, 255, 0.15);
+    box-shadow: inset 0 0 20px var(--electric-blue);
+    border: 2px dashed var(--electric-blue);
+}
+
+/* Banquillo */
+.bench-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--electric-blue);
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.bench-container h2 {
+    font-family: 'Russo One', sans-serif;
+    color: var(--electric-blue);
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.bench {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+    min-height: 160px; padding: 20px;
+    border: 2px dashed #555; border-radius: 10px;
+    background: rgba(0,0,0,0.3);
+}
+
+/* --- IMÁGENES (CARÁTULAS) ACTUALIZADO --- */
+.game-cover {
+    width: 105px; /* Un poco más grandes */
+    height: 105px;
+    /* 'contain' asegura que la imagen se vea completa sin recorte */
+    object-fit: contain; 
+    border-radius: 8px;
+    cursor: grab;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, border-color 0.2s;
+    /* Borde sutil y fondo para unificar el tamaño */
+    border: 2px solid rgba(255,255,255,0.1);
+    background-color: rgba(0,0,0,0.3); 
+}
+
+.game-cover:hover {
+    transform: scale(1.15) rotate(-3deg);
+    box-shadow: 0 5px 15px rgba(255, 204, 0, 0.6);
+    border-color: var(--lightning-yellow);
+    z-index: 100;
+    background-color: rgba(0,0,0,0.5);
+}
+.game-cover:active { cursor: grabbing; }
+.game-cover.dragging { opacity: 0.5; transform: scale(0.9); }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .tier-row { min-height: 120px; }
+    .tier-label { width: 80px; font-size: 1.8rem; }
+    .tier-label span { display: none; }
+    .tier-stats { width: 80px; padding: 5px; }
+    .stat-percent { font-size: 1.2rem; }
+    .game-cover { width: 85px; height: 85px; } /* Ajuste responsive */
+}
+
+@media (max-width: 600px) {
+    header h1 { font-size: 1.8rem; }
+    .inazuma-btn { padding: 10px 20px; font-size: 0.9rem; }
+    .tier-row { min-height: 100px; gap: 0; }
+    .tier-label { width: 50px; font-size: 1.5rem; }
+    .tier-stats { width: 60px; border-left: 1px solid #333; }
+    .stat-percent { font-size: 1rem; margin-bottom: 4px; }
+    .progress-bar-container { height: 6px; width: 90%; }
+    .tier-content { padding: 10px; gap: 8px; }
+    .game-cover { width: 70px; height: 70px; gap: 5px;} /* Ajuste responsive móvil */
+    .bench { gap: 10px; padding: 10px;}
 }

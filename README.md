@@ -27,3 +27,7 @@ Inazuma Eleven Strikers Xtreme 2013.jpg
 Inazuma Eleven Strikers.jpg
 Inazuma Eleven Victory Road.jpg
 Inazuma Eleven.jpg
+
+# Prompt 4
+Quiero que las imágenes se vean completas, no recortadas, pero que sigan respetando todas las mismas proporciones.
+Además quiero agregarle un icono a la página, se llama así: raimon.ico
