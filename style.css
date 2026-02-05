@@ -1,0 +1,196 @@
+:root {
+    --bg-dark: #0b0d17;
+    --electric-blue: #00e5ff;
+    --lightning-yellow: #ffcc00;
+    --text-white: #ffffff;
+    
+    /* Colores de Rangos */
+    --rank-s: #27ae60; /* Verde Oscuro */
+    --rank-a: #2ecc71; /* Verde Claro */
+    --rank-b: #f1c40f; /* Amarillo */
+    --rank-c: #e67e22; /* Naranja */
+    --rank-d: #c0392b; /* Rojo */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Fondo Estilo Galaxy */
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #1a2542 0%, #0b0d17 100%);
+    z-index: -1;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 2px solid var(--electric-blue);
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+header h1 {
+    font-family: 'Russo One', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--electric-blue);
+    font-style: italic;
+}
+
+.highlight {
+    color: var(--lightning-yellow);
+    text-shadow: 0 0 10px var(--lightning-yellow);
+}
+
+/* Estructura Tier List */
+.tier-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tier-row {
+    display: flex;
+    min-height: 120px;
+    border: 2px solid #333;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Etiquetas de Rango (Izquierda) */
+.tier-label {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Russo One', sans-serif;
+    font-size: 2rem;
+    color: #000;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.3);
+    flex-shrink: 0;
+}
+
+.tier-label span {
+    font-size: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.rank-s { background-color: var(--rank-s); }
+.rank-a { background-color: var(--rank-a); }
+.rank-b { background-color: var(--rank-b); }
+.rank-c { background-color: var(--rank-c); }
+.rank-d { background-color: var(--rank-d); }
+
+/* Zona de contenido (Derecha) */
+.tier-content {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    transition: background-color 0.3s;
+}
+
+/* Feedback visual al arrastrar */
+.tier-content.drag-over, .bench.drag-over {
+    background-color: rgba(0, 229, 255, 0.2);
+    box-shadow: inset 0 0 15px var(--electric-blue);
+}
+
+/* Banquillo */
+.bench-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--electric-blue);
+    border-radius: 10px;
+}
+
+.bench-container h2 {
+    font-family: 'Russo One', sans-serif;
+    color: var(--electric-blue);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.bench {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    min-height: 150px;
+    padding: 10px;
+    border: 2px dashed #444;
+    border-radius: 5px;
+}
+
+/* Imágenes (Carátulas) */
+.game-cover {
+    width: 90px;
+    height: 90px; /* Cuadrado para uniformidad o rectangular según prefieras */
+    object-fit: cover; /* Recorta para llenar el cuadrado */
+    border-radius: 5px;
+    cursor: grab;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.27), box-shadow 0.2s;
+    border: 2px solid transparent;
+}
+
+.game-cover:hover {
+    transform: scale(1.15) rotate(-2deg);
+    box-shadow: 0 0 15px var(--lightning-yellow);
+    border-color: var(--text-white);
+    z-index: 10;
+}
+
+.game-cover:active {
+    cursor: grabbing;
+}
+
+/* Ajustes Responsive (Móvil) */
+@media (max-width: 768px) {
+    .tier-row {
+        min-height: 100px;
+    }
+    
+    .tier-label {
+        width: 60px;
+        font-size: 1.5rem;
+    }
+
+    .tier-label span {
+        display: none; /* Ocultar texto descriptivo en móvil para ahorrar espacio */
+    }
+
+    .game-cover {
+        width: 70px;
+        height: 70px;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+    }
+}
